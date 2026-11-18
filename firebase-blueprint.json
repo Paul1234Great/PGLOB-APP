@@ -1,0 +1,328 @@
+{
+  "entities": {
+    "UserPrivateProfile": {
+      "title": "UserPrivateProfile",
+      "description": "Private user account, PII, wallet balances, and security settings.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID" },
+        "fullName": { "type": "string", "description": "User full name" },
+        "username": { "type": "string", "description": "Unique handle without @" },
+        "usernameVerified": { "type": "boolean", "description": "Gold verified tick status" },
+        "phone": { "type": "string", "description": "Phone number with country code" },
+        "email": { "type": "string", "description": "Email address" },
+        "country": { "type": "string", "description": "Country name" },
+        "countryFlag": { "type": "string", "description": "Country emoji flag" },
+        "currency": { "type": "string", "description": "Currency symbol" },
+        "language": { "type": "string", "description": "Preferred language" },
+        "about": { "type": "string", "description": "Status bio text" },
+        "bio": { "type": "string", "description": "Short user bio visible on profile" },
+        "interests": { "type": "array", "description": "List of user interest tags" },
+        "photoUri": { "type": "string", "description": "Profile picture URI or compact Data URL" },
+        "coins": { "type": "integer", "description": "Earned coin balance" },
+        "diamonds": { "type": "integer", "description": "Earned diamond balance" },
+        "walletBalance": { "type": "number", "description": "Fiat wallet balance" },
+        "payAccountNumber": { "type": "string", "description": "10-digit PGLOB Pay virtual account" },
+        "transactionPin": { "type": "string", "description": "4-digit Pay PIN" },
+        "vipTier": { "type": "string", "enum": ["FREE", "GOLD", "DIAMOND"], "description": "VIP membership tier" },
+        "datingEnabled": { "type": "boolean", "description": "Dating discovery opt-in" },
+        "fingerprintEnabled": { "type": "boolean", "description": "Biometric lock toggle" },
+        "isBanned": { "type": "boolean", "description": "Admin moderation flag" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp on creation" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp on update" }
+      },
+      "required": ["userId", "fullName", "username", "createdAt"]
+    },
+    "PublicProfile": {
+      "title": "PublicProfile",
+      "description": "Public non-PII profile for Connect, Dating Discover, and Leaderboard.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "username": { "type": "string" },
+        "usernameVerified": { "type": "boolean" },
+        "country": { "type": "string" },
+        "countryFlag": { "type": "string" },
+        "city": { "type": "string" },
+        "language": { "type": "string" },
+        "about": { "type": "string" },
+        "photoUri": { "type": "string" },
+        "coins": { "type": "integer" },
+        "vipTier": { "type": "string", "enum": ["FREE", "GOLD", "DIAMOND"] },
+        "isOnline": { "type": "boolean" },
+        "isKingQueen": { "type": "boolean" },
+        "isPublic": { "type": "boolean" },
+        "datingEnabled": { "type": "boolean" },
+        "age": { "type": "integer" },
+        "gender": { "type": "string" },
+        "lookingFor": { "type": "string" },
+        "bio": { "type": "string" },
+        "interests": { "type": "array" },
+        "relationshipGoal": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "username", "isPublic", "createdAt"]
+    },
+    "UsernameClaim": {
+      "title": "UsernameClaim",
+      "description": "Unique username reservation record.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "username", "isPublic", "createdAt"]
+    },
+    "ChatThread": {
+      "title": "ChatThread",
+      "description": "1:1 or group conversation metadata.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "isGroup": { "type": "boolean" },
+        "isArchived": { "type": "boolean" },
+        "isPinned": { "type": "boolean" },
+        "isMuted": { "type": "boolean" },
+        "lastMessage": { "type": "string" },
+        "lastSenderId": { "type": "string" },
+        "unreadCount": { "type": "integer" },
+        "memberUids": { "type": "array", "description": "Bounded list of participant UIDs" },
+        "peerFlag": { "type": "string" },
+        "peerOnline": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "memberUids", "createdAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Individual chat message inside a chat thread.",
+      "type": "object",
+      "properties": {
+        "chatId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "memberUids": { "type": "array" },
+        "text": { "type": "string" },
+        "messageType": { "type": "string", "enum": ["TEXT", "IMAGE", "VIDEO", "VOICE", "FILE", "MONEY", "GIFT", "MONEY_REQUEST"] },
+        "mediaUri": { "type": "string" },
+        "amount": { "type": "number" },
+        "giftName": { "type": "string" },
+        "replyToText": { "type": "string" },
+        "reaction": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["chatId", "senderId", "memberUids", "text", "messageType", "createdAt"]
+    },
+    "PayTransaction": {
+      "title": "PayTransaction",
+      "description": "PGLOB Pay, withdrawal, airtime, data, bill, or market ledger entry.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "counterpartyId": { "type": "string" },
+        "txType": { "type": "string", "enum": ["SEND", "RECEIVE", "ADD", "WITHDRAW", "AIRTIME", "DATA", "BILL", "MARKET", "GIFT"] },
+        "amount": { "type": "number" },
+        "fee": { "type": "number" },
+        "currency": { "type": "string" },
+        "method": { "type": "string" },
+        "destination": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING", "APPROVED", "PAID", "REJECTED"] },
+        "note": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "txType", "amount", "fee", "status", "createdAt"]
+    },
+    "MarketProduct": {
+      "title": "MarketProduct",
+      "description": "Marketplace listing item.",
+      "type": "object",
+      "properties": {
+        "sellerId": { "type": "string" },
+        "sellerName": { "type": "string" },
+        "sellerFlag": { "type": "string" },
+        "sellerVerified": { "type": "boolean" },
+        "title": { "type": "string" },
+        "priceCoins": { "type": "integer" },
+        "priceCash": { "type": "number" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "location": { "type": "string" },
+        "imageUri": { "type": "string" },
+        "approved": { "type": "boolean" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sellerId", "title", "priceCoins", "category", "isPublic", "createdAt"]
+    },
+    "StatusPost": {
+      "title": "StatusPost",
+      "description": "24-hour status update.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "countryFlag": { "type": "string" },
+        "mediaType": { "type": "string" },
+        "caption": { "type": "string" },
+        "mediaUri": { "type": "string" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "caption", "isPublic", "createdAt"]
+    },
+    "ReelPost": {
+      "title": "ReelPost",
+      "description": "Short vertical video reel.",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "caption": { "type": "string" },
+        "hashtag": { "type": "string" },
+        "music": { "type": "string" },
+        "likes": { "type": "integer" },
+        "views": { "type": "integer" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "authorName", "caption", "isPublic", "createdAt"]
+    },
+    "JobListing": {
+      "title": "JobListing",
+      "description": "Global job board listing.",
+      "type": "object",
+      "properties": {
+        "posterId": { "type": "string" },
+        "title": { "type": "string" },
+        "company": { "type": "string" },
+        "salary": { "type": "string" },
+        "jobType": { "type": "string" },
+        "location": { "type": "string" },
+        "description": { "type": "string" },
+        "approved": { "type": "boolean" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["posterId", "title", "company", "salary", "isPublic", "createdAt"]
+    },
+    "LiveRoom": {
+      "title": "LiveRoom",
+      "description": "Live audio or video world room.",
+      "type": "object",
+      "properties": {
+        "hostId": { "type": "string" },
+        "hostName": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "mode": { "type": "string", "enum": ["AUDIO", "VIDEO"] },
+        "countryFlag": { "type": "string" },
+        "viewerCount": { "type": "integer" },
+        "isLive": { "type": "boolean" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["hostId", "hostName", "title", "mode", "isPublic", "createdAt"]
+    },
+    "DatingSwipe": {
+      "title": "DatingSwipe",
+      "description": "Dating like/pass/superlike action.",
+      "type": "object",
+      "properties": {
+        "fromUid": { "type": "string" },
+        "toUid": { "type": "string" },
+        "action": { "type": "string", "enum": ["LIKE", "PASS", "SUPER_LIKE"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fromUid", "toUid", "action", "createdAt"]
+    },
+    "DatingMatch": {
+      "title": "DatingMatch",
+      "description": "Mutual dating match linking two users.",
+      "type": "object",
+      "properties": {
+        "memberUids": { "type": "array" },
+        "chatId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["memberUids", "chatId", "createdAt"]
+    },
+    "SafetyReport": {
+      "title": "SafetyReport",
+      "description": "User, product, or reel safety report for admin moderation.",
+      "type": "object",
+      "properties": {
+        "reporterId": { "type": "string" },
+        "targetType": { "type": "string" },
+        "targetId": { "type": "string" },
+        "reason": { "type": "string" },
+        "status": { "type": "string", "enum": ["OPEN", "RESOLVED", "DISMISSED"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reporterId", "targetType", "targetId", "reason", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserPrivateProfile" },
+      "description": "Private user account and wallet data"
+    },
+    "/publicProfiles/{userId}": {
+      "schema": { "$ref": "#/entities/PublicProfile" },
+      "description": "Public discovery and leaderboard profiles"
+    },
+    "/usernames/{username}": {
+      "schema": { "$ref": "#/entities/UsernameClaim" },
+      "description": "Unique username index"
+    },
+    "/chats/{chatId}": {
+      "schema": { "$ref": "#/entities/ChatThread" },
+      "description": "Chat conversations"
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Messages inside a chat"
+    },
+    "/transactions/{txId}": {
+      "schema": { "$ref": "#/entities/PayTransaction" },
+      "description": "PGLOB Pay and withdraw transactions"
+    },
+    "/marketProducts/{productId}": {
+      "schema": { "$ref": "#/entities/MarketProduct" },
+      "description": "Marketplace listings"
+    },
+    "/statuses/{statusId}": {
+      "schema": { "$ref": "#/entities/StatusPost" },
+      "description": "24h status updates"
+    },
+    "/reels/{reelId}": {
+      "schema": { "$ref": "#/entities/ReelPost" },
+      "description": "Vertical reels"
+    },
+    "/jobs/{jobId}": {
+      "schema": { "$ref": "#/entities/JobListing" },
+      "description": "Job board listings"
+    },
+    "/liveRooms/{roomId}": {
+      "schema": { "$ref": "#/entities/LiveRoom" },
+      "description": "Live world audio and video rooms"
+    },
+    "/datingSwipes/{swipeId}": {
+      "schema": { "$ref": "#/entities/DatingSwipe" },
+      "description": "Private dating swipe records"
+    },
+    "/datingMatches/{matchId}": {
+      "schema": { "$ref": "#/entities/DatingMatch" },
+      "description": "Mutual dating matches"
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/SafetyReport" },
+      "description": "Admin moderation reports"
+    }
+  }
+}

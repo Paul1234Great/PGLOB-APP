@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Crisp white chat bubble outline with bottom-left tail inside 66dp safe zone -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="6.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M35.5,73.5 L25.5,81.5 L29.0,67.5 C24.0,60.5 23.0,51.0 26.5,42.5 C31.0,31.5 42.0,25.5 54.0,25.5 C70.0,25.5 82.0,36.8 82.0,51.5 C82.0,66.2 70.0,77.5 54.0,77.5 C47.2,77.5 40.8,76.0 35.5,73.5 Z" />
+
+    <!-- Bold white P centered cleanly inside the chat bubble (no stars, no extra text) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M44.5,38.0 L56.0,38.0 C62.8,38.0 67.2,41.8 67.2,47.4 C67.2,53.0 62.8,56.8 56.0,56.8 L51.0,56.8 L51.0,65.5 L44.5,65.5 Z M51.0,43.2 L51.0,51.6 L55.4,51.6 C58.8,51.6 60.8,50.0 60.8,47.4 C60.8,44.8 58.8,43.2 55.4,43.2 Z" />
+</vector>
