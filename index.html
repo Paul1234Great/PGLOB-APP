@@ -5,20 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PGLOB - 7 Apps in 1</title>
 <style>
-body{background:#000;color:#fff;font-family:Arial;text-align:center;margin:0;padding:20px}
-h1{font-size:40px;margin:10px} h1 span{color:#00ff88}
+body{background:#000;color:#fff;font-family:Arial;text-align:center;margin:0;padding:20px;padding-bottom:90px}
+h1{font-size:42px;margin:10px} h1 span{color:#00ff88}
 p{color:#ccc}
 .btn{background:#00ff88;color:#000;padding:15px 30px;border-radius:30px;display:inline-block;font-weight:bold;text-decoration:none;margin:10px}
 .card{background:#111;border:1px solid #222;border-radius:20px;padding:20px;margin:15px;text-align:left}
 .card h3{margin:0} .price{color:#00ff88}
+input,select{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:1px solid #333;background:#111;color:#fff;box-sizing:border-box}
+.form{background:#111;border:1px solid #00ff88;border-radius:20px;padding:20px;margin:15px;text-align:left}
+.whatsapp{position:fixed;bottom:15px;right:15px;background:#25D366;color:#fff;padding:15px 20px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 0 20px #25D366}
 </style>
 </head>
 <body>
 <h1>PG<span>LOB</span></h1>
 <p>7 Apps in 1 - Chat, Reels, Editor, Ajo, Pay, Games, PRO</p>
-<a class="btn" href="#">Download PGLOB App</a>
-<a class="btn" style="background:#fff" href="#">Join Waitlist</a>
-
+<a class="btn" href="#signup">Join PGLOB Now</a>
 <div class="card"><h3>💬 PGLOB Chat</h3><p>Chats + Status like WhatsApp</p></div>
 <div class="card"><h3>🎬 PGLOB Reels</h3><p>Short videos like TikTok</p></div>
 <div class="card"><h3>✂️ PGLOB Editor</h3><p>Edit videos like CapCut</p></div>
@@ -26,7 +27,27 @@ p{color:#ccc}
 <div class="card"><h3>💰 PGLOB Pay / Wallet</h3><p>Send money FREE inside PGLOB, Pay Bills, Airtime, Data</p></div>
 <div class="card"><h3>🎮 PGLOB Games</h3><p>Spin Wheel, Quiz, Tap Game - Play + Earn Coins</p></div>
 <div class="card"><h3>👑 PGLOB PRO</h3><p class="price">₦500 / week - ₦1,500 / month - ₦15,000 / year</p><p>2x Coins, No Ads, VIP Badge</p></div>
-
+<div class="form" id="signup">
+<h2 style="text-align:center">📝 Join PGLOB Waitlist</h2>
+<input id="name" placeholder="Your Full Name">
+<input id="phone" placeholder="Your WhatsApp Number e.g 0803...">
+<select id="country"><option>Nigeria</option><option>Ghana</option><option>Kenya</option><option>UK</option><option>USA</option><option>India</option><option>Other</option></select>
+<select id="interest"><option>I want Chat + Reels</option><option>I want Ajo Bank</option><option>I want Pay / Wallet</option><option>I want Games + Earn Coins</option><option>I want PGLOB PRO</option></select>
+<a class="btn" style="width:100%;box-sizing:border-box;text-align:center" href="#" onclick="join()">Join PGLOB on WhatsApp ✅</a>
+<p style="text-align:center;font-size:13px">After you press, e go open WhatsApp to send your details to PGLOB.</p>
+</div>
 <p>© 2026 PGLOB - Black Edition</p>
+<a class="whatsapp" href="https://wa.me/2348054285485?text=Hello%20PGLOB%2C%20I%20want%20to%20join!">💬 Chat PGLOB</a>
+<script>
+function join(){
+var n=document.getElementById('name').value;
+var p=document.getElementById('phone').value;
+var c=document.getElementById('country').value;
+var i=document.getElementById('interest').value;
+if(!n||!p){alert('Please put your Name and WhatsApp Number');return;}
+var msg='Hello PGLOB! I want to join.%0AName: '+n+'%0APhone: '+p+'%0ACountry: '+c+'%0AInterest: '+i;
+window.open('https://wa.me/2348054285485?text='+msg,'_blank');
+}
+</script>
 </body>
 </html>
